@@ -35,6 +35,14 @@ namespace RomanNumeralConverter.App
                     result = romans[remainder] + result;
                     break;
                 }
+                else if (romans.ContainsKey(remainder - 1))
+                {
+                    result = result + romans[remainder - 1];
+                    remainder = remainder - (remainder - 1);
+                    result = result + romans[remainder];
+                    remainder -= remainder; 
+                    continue;
+                }
                 else if (!romans.ContainsKey(number))
                 {
                     if (remainder < 5 )

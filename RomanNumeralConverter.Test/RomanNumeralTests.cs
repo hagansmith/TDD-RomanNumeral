@@ -53,5 +53,17 @@ namespace RomanNumeralConverter.Test
             // Assert
             Assert.AreEqual("XII", result);
         }
+
+        [Test]
+        public void Entering_the_number_16_results_in_roman_numeral_XVI()
+        {
+            // Arrange
+            var number = 16;
+            var numberConverter = new NumberConverter();
+            // Act
+            var result = numberConverter.Convert(number);
+            // Assert
+            Assert.AreEqual("XVI", result);
+        }
     }
 }
