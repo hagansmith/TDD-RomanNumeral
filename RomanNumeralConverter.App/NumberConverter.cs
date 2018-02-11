@@ -17,66 +17,88 @@ namespace RomanNumeralConverter.App
 
             Dictionary <int, string> romans = new Dictionary<int, string>
             {
-                {1, "I"},
-                {5, "V"},
-                {10, "X" },
-                {50, "L" },
-                {100, "C" },
+                {1000, "M" },
+                {900, "CM" },
                 {500, "D" },
-                {1000, "M" }
+                {400, "CD" },
+                {100, "C" },
+                {90, "XC" },
+                {50, "L" },
+                {40, "XL" },
+                {10, "X" },
+                {9, "IX" },
+                {5, "V"},
+                {4, "IV"},
+                { 1, "I"}
             };
 
-            int remainder = number;
-
-            while (remainder > 0)
+            //int remainder = number;
+            foreach (KeyValuePair<int, string> set in romans)
             {
-                if (romans.ContainsKey(remainder))
+                while (number >= set.Key )
                 {
-                    if (result == "")
-                    {
-                        result = romans[remainder] + result;
-                    }
-                    else
-                    {
-                        result = result.Insert(result.Length - 1, romans[remainder]);
-                    }
-                    
-                    break;
-                }
-                else if (romans.ContainsKey(remainder - 1))
-                {
-                    result = result + romans[remainder - 1];
-                    remainder = remainder - (remainder - 1);
-                    result = result + romans[remainder];
-                    remainder -= remainder; 
-                    continue;
-                }
-                else if (!romans.ContainsKey(number))
-                {
-                    if (remainder < 5 )
-                    {
-                        result += new String('I' , remainder);
-                        break;
-                    }
-                    else if (remainder < 10)
-                    {
-                        int index = romans.Keys.ToList().BinarySearch(remainder);
-                        string value = romans.ElementAt(+~index).Value;
-                        int key = romans.ElementAt(+~index).Key;
-                        remainder = key - remainder;
-                        result += value;
-                    }
-                    else
-                    {
-                        int index = romans.Keys.ToList().BinarySearch(remainder);
-                        string value = romans.ElementAt(~index -1).Value;
-                        int key = romans.ElementAt(~index - 1).Key;
-                        remainder = remainder - key;
-                        result += value;
-                    }
-
+                    result += set.Value;
+                    number -= set.Key;
                 }
             }
+            //while (remainder > 0)
+            //{
+                
+                //if (romans.ContainsKey(remainder))
+                //{
+                //    if (result == "")
+                //    {
+                //        result = romans[remainder] + result;
+                //    }
+                //    else
+                //    {
+                //        result = result.Insert(result.Length - 1, romans[remainder]);
+                //    }
+                    
+                //    break;
+                //}
+                //else if (romans.ContainsKey(remainder - 1))
+                //{
+                //    result = result + romans[remainder - 1];
+                //    remainder = remainder - (remainder - 1);
+                //    result = result + romans[remainder];
+                //    remainder -= remainder; 
+                //    continue;
+                //}
+                //else if (!romans.ContainsKey(number))
+                //{
+                //    if (remainder < 5 )
+                //    {
+                //        result += new String('I' , remainder);
+                //        break;
+                //    }
+                //    else if (remainder < 10)
+                //    {
+                //        int index = romans.Keys.ToList().BinarySearch(remainder);
+                //        string value = romans.ElementAt(+~index).Value;
+                //        int key = romans.ElementAt(+~index).Key;
+                //        remainder = key - remainder;
+                //        result += value;
+                //    }
+                //    else if (remainder > 39)
+                //    {
+                //        int index = romans.Keys.ToList().BinarySearch(remainder);
+                //        string value = romans.ElementAt(+~index).Value;
+                //        int key = romans.ElementAt(+~index).Key;
+                //        remainder = key - remainder;
+                //        result += value;
+                //    }
+                //    else
+                //    {
+                //        int index = romans.Keys.ToList().BinarySearch(remainder);
+                //        string value = romans.ElementAt(~index -1).Value;
+                //        int key = romans.ElementAt(~index - 1).Key;
+                //        remainder = remainder - key;
+                //        result += value;
+                //    }
+
+                //}
+            //}
             return result;
         }
     }

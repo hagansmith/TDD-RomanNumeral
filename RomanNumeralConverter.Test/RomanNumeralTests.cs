@@ -76,5 +76,29 @@ namespace RomanNumeralConverter.Test
             // Assert
             Assert.AreEqual("XXIX", result);
         }
+
+        [Test]
+        public void Entering_the_number_44_results_in_roman_numeral_XLIV()
+        {
+            // Arrange
+            var number = 44;
+            var numberConverter = new NumberConverter();
+            // Act
+            var result = numberConverter.Convert(number);
+            // Assert
+            Assert.AreEqual("XLIV", result);
+        }
+
+        [Test]
+        public void Entering_the_number_45_results_in_roman_numeral_XLV()
+        {
+            // Arrange
+            var number = 45;
+            var numberConverter = new NumberConverter();
+            // Act
+            var result = numberConverter.Convert(number);
+            // Assert
+            Assert.AreEqual("XLV", result);
+        }
     }
 }
