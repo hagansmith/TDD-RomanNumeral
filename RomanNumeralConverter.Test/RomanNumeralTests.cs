@@ -65,5 +65,16 @@ namespace RomanNumeralConverter.Test
             // Assert
             Assert.AreEqual("XVI", result);
         }
+        [Test]
+        public void Entering_the_number_29_results_in_roman_numeral_XXIX()
+        {
+            // Arrange
+            var number = 29;
+            var numberConverter = new NumberConverter();
+            // Act
+            var result = numberConverter.Convert(number);
+            // Assert
+            Assert.AreEqual("XXIX", result);
+        }
     }
 }

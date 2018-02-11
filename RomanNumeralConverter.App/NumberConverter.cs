@@ -32,7 +32,15 @@ namespace RomanNumeralConverter.App
             {
                 if (romans.ContainsKey(remainder))
                 {
-                    result = romans[remainder] + result;
+                    if (result == "")
+                    {
+                        result = romans[remainder] + result;
+                    }
+                    else
+                    {
+                        result = result.Insert(result.Length - 1, romans[remainder]);
+                    }
+                    
                     break;
                 }
                 else if (romans.ContainsKey(remainder - 1))
