@@ -37,11 +37,28 @@ namespace RomanNumeralConverter.App
                 }
                 else if (!romans.ContainsKey(number))
                 {
-                    int index = romans.Keys.ToList().BinarySearch(remainder);
-                    string value = romans.ElementAt(+~index).Value;
-                    int key = romans.ElementAt(+~index).Key;
-                    remainder = key - remainder;
-                    result += value;
+                    if (remainder < 5 )
+                    {
+                        result += new String('I' , remainder);
+                        break;
+                    }
+                    else if (remainder < 10)
+                    {
+                        int index = romans.Keys.ToList().BinarySearch(remainder);
+                        string value = romans.ElementAt(+~index).Value;
+                        int key = romans.ElementAt(+~index).Key;
+                        remainder = key - remainder;
+                        result += value;
+                    }
+                    else
+                    {
+                        int index = romans.Keys.ToList().BinarySearch(remainder);
+                        string value = romans.ElementAt(~index -1).Value;
+                        int key = romans.ElementAt(~index - 1).Key;
+                        remainder = remainder - key;
+                        result += value;
+                    }
+
                 }
             }
             return result;
