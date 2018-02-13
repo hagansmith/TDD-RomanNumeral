@@ -9,7 +9,6 @@ namespace RomanNumeralConverter.App
         public string Convert(int number)
         {
             string result = "";
-            int currentNumValue = number;
 
             Dictionary <int, string> romans = new Dictionary<int, string>
             {
@@ -28,12 +27,15 @@ namespace RomanNumeralConverter.App
                 { 1, "I"}
             };
 
-            //int remainder = number;
+            // Loop through the dictionary
             foreach (KeyValuePair<int, string> set in romans)
             {
+                // while our given number is bigger than the current number key
                 while (number >= set.Key )
                 {
+                    // append the current numeral to the result
                     result += set.Value;
+                    // subtract the current key amount from the number
                     number -= set.Key;
                 }
             }
